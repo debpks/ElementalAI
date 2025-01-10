@@ -6,6 +6,6 @@ debug: true
 ##########-DATA-SETTINGS-##########
 data:
   verdict_url: https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/main/ch02/01_main-chapter-code/the-verdict.txt
-  local_path: data
+  local_path: data/
 
   
