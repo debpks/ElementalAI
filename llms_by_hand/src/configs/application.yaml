@@ -1,6 +1,0 @@
-##########-GENERAL-SETTINGS-##########
-app_name: "LLMS by Hand"
-app_version: "0.1.0"
-app_description: "A simple application to create different LLM components by hand"
-
-##########-DATA-SETTINGS-##########
