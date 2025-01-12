@@ -2,6 +2,7 @@ import os
 import urllib.request as request
 from urllib.parse import urlparse
 import re
+from collections import Counter
 import requests
 import traceback
 from loguru import logger
@@ -9,7 +10,8 @@ from config import settings
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
-class ManualTokenizer:
+class ManualTokenizerUtil:
+    
     def __init__(self,data_url:str=settings.data.verdict_url,local_path:str=settings.data.local_path):
         self.url = data_url
         self.local_path = local_path
@@ -58,16 +60,19 @@ class ManualTokenizer:
             logger.error(f"Error in loading data:{traceback.format_exc()}")
             return str(False)
 
-    def process_text(self,text:str):
+    def process_text(self,text:str)-> list:
         text = text.lower()
         text = re.split(r'[,.:;?_!"()--\s]',text)
+        text = [word for word in text if word != ""]
         return text
 
-    def vocabulary(self): 
-        pass
+    def vocabulary(self,text:list)-> dict: 
+        unique_words = list(set(text))
+        vocab = {word:i for i,word in enumerate(unique_words)}
+        return vocab
     
-    def encode_text(self):
-        pass
+    def encode_text(self,query_text:str)-> list[int]:
+        vocabs = se
     
     def decode_text(self):
         pass
