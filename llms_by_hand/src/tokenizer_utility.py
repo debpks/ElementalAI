@@ -12,9 +12,11 @@ ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 class ManualTokenizerUtil:
     
-    def __init__(self,data_url:str=settings.data.verdict_url,local_path:str=settings.data.local_path):
+    def __init__(self,data_url:str=settings.data.verdict_url,local_path:str=settings.data.local_path,download:bool=True):
         self.url = data_url
         self.local_path = local_path
+        self.download = download
+        assert self.validate_url(self.url)
         
     def validate_url(self,url: str= None)-> bool:
         try:
@@ -51,8 +53,13 @@ class ManualTokenizerUtil:
             logger.error(f"Error in downloading data:{traceback.format_exc()}")
             return False
         
-    def load_data(self,local_path:str)-> str:
+    def load_data(self,local_path:str=None)-> str:
+        if self.download:
+
+            local_path = self.download_data(self.url)
         try:
+            if local_path is None:
+                local_path = self.local_path
             with open(local_path,"r") as f:
                 data = f.read()
                 return data
@@ -65,15 +72,10 @@ class ManualTokenizerUtil:
         text = re.split(r'[,.:;?_!"()--\s]',text)
         text = [word for word in text if word != ""]
         return text
-
-    def vocabulary(self,text:list)-> dict: 
-        unique_words = list(set(text))
-        vocab = {word:i for i,word in enumerate(unique_words)}
-        return vocab
     
-    def encode_text(self,query_text:str)-> list[int]:
-        vocabs = se
-    
-    def decode_text(self):
-        pass
+    def vocabulary(self,text: list)-> dict:
+        text = sorted(set(text))
+        vocab = {wrd:idx for idx,wrd in enumerate(text)}
+        idx2word = {idx:wrd for wrd,idx in vocab.items()}
+        return vocab,idx2word
     
