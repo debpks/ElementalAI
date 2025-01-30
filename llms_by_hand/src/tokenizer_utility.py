@@ -75,6 +75,7 @@ class ManualTokenizerUtil:
     
     def vocabulary(self,text: list)-> dict:
         text = sorted(set(text))
+        text.extend(["<|unk|>","<|endoftext|>"])
         vocab = {wrd:idx for idx,wrd in enumerate(text)}
         idx2word = {idx:wrd for wrd,idx in vocab.items()}
         return vocab,idx2word
