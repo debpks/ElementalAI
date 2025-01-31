@@ -19,4 +19,4 @@ with open("llms_by_hand/data/the-verdict.txt","r") as f:
 
 dataset = GPTDataset(data,gpt_tokenizer,max_length=4,stride=1)
 
-dataloader_v1 = Dataloader(dataset,batch_size=1,workers=0,shuffle=False)
+dataloader_v1 = Dataloader(dataset,batch_size=1,num_workers=5,shuffle=False)
