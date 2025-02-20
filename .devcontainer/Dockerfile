@@ -18,7 +18,7 @@ RUN apt-get clean && \
 
 RUN python3 -m pip install --upgrade pip
 
-RUN pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu118
+RUN pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu118
 # RUN pip insall tensorflow[and-cuda]==2.14.0
 COPY ../requirements.txt requirements.txt 
 

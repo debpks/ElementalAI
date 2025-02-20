@@ -16,3 +16,6 @@ seaborn==0.13.1
 scipy==1.15.0
 loguru==0.7.3
 dynaconf==3.2.6
+huggingface_hub
+openai
+duckdb
